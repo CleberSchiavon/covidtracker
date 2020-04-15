@@ -8,7 +8,7 @@ import styles from "./Cards.module.css";
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
-    return `Loading...`;
+    return `Carregando, aguarde...`;
   }
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
   return (
