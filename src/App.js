@@ -42,6 +42,7 @@ class App extends React.Component {
             <div className={styles.container}>
                 <img className={styles.image} src={Image} alt="COVID-19"/>
                 <Card data={data}/>
+                <Typography color="textSecondary">Selecione um País clicando abaixo</Typography>
                 <CountryPicker handleCountryChange={this.handleCountryChange}/>
                 <Chart data={data} country={country}/>
                 <Typography style={{justifyContent: 'flex-start', marginTop: 20, marginBottom: 6}} color="textSecondary">
