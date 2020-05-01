@@ -41,7 +41,7 @@ function CountryCard() {
 
   return (
     <Card
-      title="Números do Covid-19 no Brasil por Estado (EM BREVE0"
+      title="Números do Covid-19 no Brasil por Estado (EM BREVE)"
     >
       <div>
        <Typography color='textSecondary'>Em breve</Typography>
