@@ -1,1 +1,1 @@
-covidtracker
+SITE: https://covidvirus.netlify.app
