@@ -1,86 +1,91 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {Typography} from '@material-ui/core'
+import React from 'react';
+import { Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import Card from "./Card";
 
-import Card from './Card';
-import analityc from '../../util/analytic';
+const useStyles = makeStyles({
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+
+  table: {
+    width: 100,
+    tableLayout: 'fixed',
+  },
+
+  textRight: {
+    textAlign: 'left',
+  },
+
+  td: {
+    padding: 6,
+    textAlign: 'left',
+    verticalAlign: 'middle',
+    fontWeight: 300,
+    fontSize: 12,
+    color: '#fff',
+    borderBottom:'solid 1px rgba(255, 255, 255, 0.1)',
+  },
+
+  tableScroll:  {
+    maxHeight: 600,
+    overflow: 'auto',
+  },
+
+})
 
 
-function CountryCard() {
-  const [data, setData] = useState([]);
+function CardBrasil() {
 
-  useEffect(() => {
-    async function fethData() {
-      const result = await axios.get(
-        "covid19-brazil-api.now.sh/api/report/v1",
-      );
-      setData(result.data.data.sort((a, b) => (a.cases < b.cases ? 1 : -1)));
-    }
-    fethData();
-  }, []);
-
-  function formatNumber(number) {
-    if (number < 10) {
-      return `0${number}`;
-    }
-    return number;
-  }
-
-  function formatDate(date) {
-    const d = new Date(date);
-    const day = `${formatNumber(d.getDate())}/${formatNumber(d.getMonth() + 1)}/${d.getFullYear()}`;
-    const hour = `${formatNumber(d.getHours())}:${formatNumber(d.getMinutes())}`;
-    return `${day} - ${hour}`;
-  }
-
-  const stateCasesToStings = (report) => (`*${report.uf}* Casos ${report.cases} Mortes ${report.deaths} \n`);
-
-  function getFlag(uf) {
-    return `https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${uf}.png`;
-  }
-
+  const classes = useStyles();
+  
   return (
-    <Card
-      title="Números do Covid-19 no Brasil por Estado (EM BREVE)"
-    >
-      <div>
-       <Typography color='textSecondary'>Em breve</Typography>
-        </div>
+    <Card title="Números do Covid-19 no Brasil por Estado (EM BREVE)">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <td>
+              <span role="img" aria-label="alert">
+                📍
+              </span>{" "}
+              <Typography
+                style={{ color: "#2b2b2b", fontSize: 15, marginRight: 20 }}
+                variant="inherit"
+              >
+                Estado
+              </Typography>
+            </td>
+            <td>
+              <span role="img" aria-label="alert">
+                🚨
+              </span>{" "}
+              <Typography
+                style={{ color: "#2b2b2b", fontSize: 15, marginRight: 20 }}
+                variant="inherit"
+              >
+                Confirmados
+              </Typography>
+            </td>
+            <td>
+              <span role="img" aria-label="death">
+                💀
+              </span>{" "}
+              <Typography
+                style={{ color: "#2b2b2b", fontSize: 15, marginRight: 20 }}
+                variant="inherit"
+              >
+                Mortes
+              </Typography>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
 
-
-      <style jsx>
-        {`
-          .flex {
-            display: flex;
-            flex-direction: row;
-          }
-          table {
-            width:100%;
-            table-layout: fixed;
-          }
-          .text-rigth {
-            text-align: left;
-          }
-          td{
-            padding: 6px;
-            text-align: left;
-            vertical-align:middle;
-            font-weight: 300;
-            font-size: 12px;
-            color: #fff;
-            border-bottom: solid 1px rgba(255,255,255,0.1);
-          }
-          td > img {
-            margin-right: 8px;
-          }
-          .table-scroll {
-            max-height: 600px;
-            overflow: auto;
-          }
-      `}
-      </style>
-    </Card>
-  );
+  </Card>
+  )
 }
 
-export default CountryCard;
+export default CardBrasil;

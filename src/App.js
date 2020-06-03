@@ -3,7 +3,8 @@ import React from 'react';
 //imports
 import { Card, Chart, CountryPicker } from './components'
 import { Typography } from "@material-ui/core";
-import CountryCard from './components/CardBrasil/BrazilCard';
+import CardBrasil from './components/CardBrasil/BrazilCard';
+
 //styles
 
 import styles from './App.module.css';
@@ -46,7 +47,7 @@ class App extends React.Component {
                 <Typography color="textSecondary">Selecione um País clicando abaixo</Typography>
                 <CountryPicker handleCountryChange={this.handleCountryChange}/>
                 <Chart data={data} country={country}/>
-                <CountryCard />
+                <CardBrasil />
                 <Typography style={{justifyContent: 'flex-start', marginTop: 20, marginBottom: 6}} color="textSecondary">
                 Cleber Schiavon @ 2020
                 </Typography>
